@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f5f3ee">
+  <title>One Line — Bild zu Plotterpfad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="One Line Startseite"><span class="brand-mark" aria-hidden="true">∿</span> ONE LINE<span class="brand-dot">.</span></a>
+    <span class="top-caption">A LITTLE IMAGE–TO–INK STUDIO</span>
+    <span class="local"><span></span> Lokal in deinem Browser</span>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">EIN BILD. EIN STIFT. EINE LINIE.</p><h1>Aus Licht wird Linie.</h1></div>
+      <p>Verwandle dein Bild in eine durchgehende Zeichnung.<br>Dunkle Stellen werden dicht, helle bleiben luftig.</p>
+    </section>
+    <div class="studio">
+      <aside class="controls" aria-label="Bild und Pfadeinstellungen">
+        <section class="control-section">
+          <h2><span>01</span> Dein Bild</h2>
+          <label class="upload" id="dropzone" for="file"><span class="upload-icon" aria-hidden="true">↥</span><strong>Bild auswählen</strong><span>oder hier hineinziehen · JPG, PNG, WebP …</span><input type="file" id="file" accept="image/*" class="visually-hidden"></label>
+          <div class="source-row"><img id="thumb" alt="Geladenes Originalbild"><div><strong id="filename">Lichtstudie (Demo)</strong><small id="source-size">Wird geladen …</small></div><button id="example" class="text-button" type="button">Demo</button></div>
+        </section>
+        <section class="control-section">
+          <h2><span>02</span> Licht &amp; Schatten <button id="reset" class="text-button" type="button">Zurücksetzen</button></h2>
+          <div class="preset-row" aria-label="Tonwert-Voreinstellungen"><button type="button" data-preset="portrait">Porträt</button><button type="button" data-preset="contrast">Kontrast</button><button type="button" data-preset="threshold">Schwellenwert</button></div>
+          <label class="slider-label" for="black">Schwarzpunkt <output id="black-value" for="black">25</output></label><input id="black" type="range" min="0" max="254" value="25">
+          <label class="slider-label" for="white">Weißpunkt <output id="white-value" for="white">220</output></label><input id="white" type="range" min="1" max="255" value="220">
+          <p class="hint">Unter dem Schwarzpunkt: volle Dichte.<br>Über dem Weißpunkt: keine zusätzliche Schraffur.</p>
+          <label class="slider-label" for="gamma">Mitteltöne <output id="gamma-value" for="gamma">1,10</output></label><input id="gamma" type="range" min="0.3" max="3" step="0.05" value="1.1">
+          <label class="checkbox"><input id="invert" type="checkbox"> Tonwerte invertieren</label>
+        </section>
+        <section class="control-section">
+          <h2><span>03</span> Der Strich</h2>
+          <label class="slider-label" for="density">Liniendichte <output id="density-value" for="density">100 %</output></label><input id="density" type="range" min="0.3" max="2.5" step="0.05" value="1">
+          <label class="slider-label" for="looseness">Schwung <output id="looseness-value" for="looseness">1,00</output></label><input id="looseness" type="range" min="0.4" max="2.5" step="0.05" value="1">
+          <label class="select-label" for="detail">Detailgrad<select id="detail"><option value="240">Schnell</option><option value="420" selected>Fein</option><option value="600">Sehr fein</option></select></label>
+          <div class="number-row"><label for="width">Motivbreite <span><input id="width" type="number" min="20" max="1000" step="1" value="180"> mm</span></label><label for="pen">Stiftbreite <span><input id="pen" type="number" min="0.1" max="2" step="0.05" value="0.35"> mm</span></label></div>
+          <label class="select-label" for="margin">Papierrand <span class="inline-number"><input id="margin" type="number" min="0" max="100" step="1" value="10"> mm</span></label>
+          <button id="shuffle" class="secondary-button" type="button">↻ Andere Linienführung</button>
+        </section>
+        <div class="control-footer"><button id="generate" class="primary-button" type="button">Pfad neu berechnen <span>↗</span></button><button id="cancel" class="text-button" type="button" hidden>Berechnung abbrechen</button><p>Ein durchgehender Pfad. Kein Absetzen.</p></div>
+      </aside>
+      <section class="workspace" aria-label="Vorschau">
+        <div class="preview-toolbar"><div class="tabs" role="group" aria-label="Vorschauansicht"><button data-view="path" class="active" aria-pressed="true">Pfad</button><button data-view="tones" aria-pressed="false">Tonwerte</button><button data-view="original" aria-pressed="false">Original</button></div><div class="preview-actions"><button id="zoom-out" aria-label="Verkleinern">−</button><button id="fit" title="Ansicht einpassen">100 %</button><button id="zoom-in" aria-label="Vergrößern">+</button></div></div>
+        <div class="paper-stage" id="stage"><div class="paper" id="paper"><canvas id="preview" aria-label="Vorschau des durchgehenden Plotterpfads"></canvas></div></div>
+        <div class="preview-bottom"><span id="status" role="status" aria-live="polite">Beispiel wird geladen …</span><span class="path-badge" id="path-badge">1 DURCHGEHENDER PFAD</span></div>
+        <progress id="progress" max="1" value="0" hidden aria-label="Pfadberechnung"></progress>
+        <div class="export-bar"><div class="stats"><div><small>PFADLÄNGE</small><strong id="length">—</strong></div><div><small>PUNKTE</small><strong id="points">—</strong></div><div><small>PAPIERFORMAT</small><strong id="dimensions">—</strong></div></div><button id="export" class="export-button" type="button" disabled>SVG herunterladen <span>↓</span></button></div>
+        <p class="workspace-note">Schwarz auf Weiß. SVG in Millimetern, mit einem einzigen Pfad. Verbindungen über helle Bereiche gehören zur Zeichnung.</p>
+      </section>
+    </div>
+  </main>
+  <footer><span>ONE LINE / EXPERIMENTAL DRAWING TOOLS</span><span>Dein Bild bleibt auf deinem Gerät.</span></footer>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

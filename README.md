@@ -1,8 +1,6 @@
 # One Line — Bild zu Plotterpfad
 
-Ein kleines JavaScript-Studio für durchgehende Kritzelporträts, inspiriert von der mitgelieferten Plotter-Video-Referenz. Dunkle Bildbereiche bekommen viele überlagerte Linien; helle bleiben weitgehend frei. Ein Bild ergibt **einen offenen, zusammenhängenden SVG-Pfad** mit einem Startpunkt und ohne Stiftabheben dazwischen.
-
-![Aus dem mitgelieferten Porträt berechneter kontinuierlicher Pfad](assets/example-plot.png)
+Ein kleines JavaScript-Studio für durchgehende Kritzelporträts, inspiriert von einer Plotter-Video-Referenz. Dunkle Bildbereiche bekommen viele überlagerte Linien; helle bleiben weitgehend frei. Ein Bild ergibt **einen offenen, zusammenhängenden SVG-Pfad** mit einem Startpunkt und ohne Stiftabheben dazwischen.
 
 ## Start
 
@@ -16,7 +14,7 @@ Dann **http://localhost:4173** öffnen. Alternativ den Ordner auf einem statisch
 
 ## Bedienung
 
-1. Das mitgelieferte Beispielporträt wird automatisch geladen und berechnet. Eigenes Bild per Dateiauswahl oder Drag-and-drop laden (z. B. JPG, PNG, WebP; abhängig von den Bildformaten des Browsers, bis 30 MB).
+1. Eine im Browser erzeugte Lichtstudie wird automatisch als Demo berechnet. Das eigene Porträt per Dateiauswahl oder Drag-and-drop laden (z. B. JPG, PNG, WebP; abhängig von den Bildformaten des Browsers, bis 30 MB). „Demo“ lädt erneut die Lichtstudie.
 2. **Schwarzpunkt**: Helligkeiten darunter werden maximal dunkel. **Weißpunkt**: Helligkeiten darüber bekommen keine zusätzliche Schraffur. Zwischen den Punkten werden Graustufen in Liniendichte umgesetzt. Für einen harten binären Schwellenwert die Voreinstellung „Schwellenwert“ verwenden; Schwarz-/Weißpunkt auf benachbarte Werte setzen, um die Grenze zu verschieben.
 3. **Mitteltöne**: Größere Werte lassen mittlere Tonwerte heller erscheinen. **Liniendichte** steuert die Menge an gezeichneter Linie. **Schwung** steuert die Länge der einzelnen Bewegungen. **Detailgrad** verändert die interne Bildauflösung.
 4. **Motivbreite**, **Stiftbreite** und **Papierrand** in Millimetern einstellen. Die Motivhöhe folgt dem Seitenverhältnis des heruntergerechneten Bildes. Papierformat und tatsächliche Pfadlänge erscheinen unter der Vorschau.
@@ -35,7 +33,7 @@ Dann **http://localhost:4173** öffnen. Alternativ den Ordner auf einem statisch
 - Die App benötigt einen aktuellen Browser mit ES-Modulen, Canvas und Modul-Web-Workern. Alle Bilddaten bleiben im Browser; keine Analyse-APIs, externen Fonts oder Telemetrie.
 - SVG ist geräteunabhängig. Es gibt bewusst keine unbestätigten maschinenspezifischen G-Code-/Servo-Befehle.
 
-Das Beispielbild stammt aus der vom Auftraggeber bereitgestellten Referenz. Sichtbare Wasserzeichen sind unverändert enthalten. Es wird keine freie Nutzungslizenz für dieses Bild behauptet; für eigene oder kommerzielle Plots entsprechend lizenzierte Bilder verwenden.
+Das vom Auftraggeber bereitgestellte Porträt wurde lokal für die Entwicklung und die Prüfung einer gerenderten Zeichnung verwendet. Das Foto und seine abgeleitete Vorschau sind nicht Bestandteil dieses öffentlichen Repositories. Sie lassen sich wie andere lokale Bilder über den Bildimport verwenden. Die integrierte Demo wird ausschließlich aus geometrischen Formen und Verläufen erzeugt.
 
 ## Struktur und Prüfung
 
